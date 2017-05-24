@@ -3,12 +3,12 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Archive: 2017/1 | x:xs</title>
+    <title>Tag: EMC++ | x:xs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta property="og:type" content="website">
 <meta property="og:title" content="x:xs">
-<meta property="og:url" content="http://yoursite.com/archives/2017/01/index.html">
+<meta property="og:url" content="http://yoursite.com/tags/EMC/index.html">
 <meta property="og:site_name" content="x:xs">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="x:xs">
@@ -117,7 +117,7 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <i class="icon fa fa-archive"></i>Archive: 2017/1
+    <i class="icon fa fa-tag"></i>Tag: <em>EMC++</em>
     </h1>
 </div>
                         <div class="main-body-content">
@@ -140,7 +140,7 @@
         <article class="article article-summary">
     <div class="article-summary-inner">
         
-        <a href="/2017/01/31/algebraic-hierarchy/" class="thumbnail">
+        <a href="/2017/05/16/constexpr/" class="thumbnail">
     
     
         <span class="thumbnail-image thumbnail-none"></span>
@@ -150,7 +150,7 @@
 <span class="comment-counter">
     <i class="fa fa-comments-o"></i>
     
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2017/01/31/algebraic-hierarchy/">0</span>
+        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2017/05/16/constexpr/">0</span>
     
 </span>
 
@@ -162,115 +162,27 @@
             <p class="category">
             
             </p>
-            <p class="date"><time datetime="2017-01-31T01:42:01.000Z" itemprop="datePublished">2017-01-31</time></p>
+            <p class="date"><time datetime="2017-05-16T14:33:24.000Z" itemprop="datePublished">2017-05-16</time></p>
         </div>
         
     
         <h1 class="article-title" itemprop="name">
-        <a href="/2017/01/31/algebraic-hierarchy/">algebraic hierarchy</a>
+        <a href="/2017/05/16/constexpr/">constexpr</a>
         </h1>
     
 
         <p class="article-excerpt">
-            의도밀접하게 관련 있는 여러 개의 대수적 추상들(abstractions, 예. numbers)을 하나의 포괄적인(generic) 추상 뒤로 숨기고, 그것에 대한 포괄적인 인터페이스를 제공 한다.
-동기방법참고
-        </p>
-    </div>
-</article>
-    
+            향목 15: 가능하면 항상 constexpr을 사용하라
+효과 
 
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/01/27/address-of/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2017/01/27/address-of/">0</span>
-    
-</span>
+컴파일 시점에 상수를 요구하는 문맥(정수 상수 표현식 integral constant expression)에 사용할 수 있다.
+배열의 크기, 정수 템플릿 인수(std::array 의 길이), 열거자 값
 
-    
-</a>
 
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2017-01-27T12:56:31.000Z" itemprop="datePublished">2017-01-27</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/01/27/address-of/">address of</a>
-        </h1>
-    
+그렇지 않은 경우도 사용 가능하다.. 는 것이 장점!
 
-        <p class="article-excerpt">
-            의도&amp; 연산자를 오버로딩한 주소 찾기.
-동기논쟁이 될 소지가 있는게, 주소를 얻지 못하게 하려는 의도가 있을 수 도 있다.그럼에도 불구하고 언어에서는 가능하다.
-12345678910111213class nonaddressable &#123;public:    typedef double useless_type;private:    useless_typ
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
 
-    
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/01/24/hello-world/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2017/01/24/hello-world/">0</span>
-    
-</span>
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2017-01-23T16:11:46.000Z" itemprop="datePublished">2017-01-24</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/01/24/hello-world/">Hello World</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick
+const 객체는 반드시 컴파일
         </p>
     </div>
 </article>

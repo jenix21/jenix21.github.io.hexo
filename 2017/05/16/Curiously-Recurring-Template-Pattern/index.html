@@ -3,27 +3,36 @@
 <head>
     <meta charset="utf-8">
     
-    <title>address of | x:xs</title>
+    <title>Curiously Recurring Template Pattern | x:xs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
         <meta name="keywords" content="c++,More C++ Idioms" />
     
-    <meta name="description" content="의도&amp;amp; 연산자를 오버로딩한 주소 찾기.
-동기논쟁이 될 소지가 있는게, 주소를 얻지 못하게 하려는 의도가 있을 수 도 있다.그럼에도 불구하고 언어에서는 가능하다.
-12345678910111213class nonaddressable &amp;#123;public:    typedef double useless_type;private:    useless_typ">
+    <meta name="description" content="가상함수를 통한 다형성
+dynamic polymorphism or runtime polymorphism
+일반적인 구현 방법 : 가상함수가 선언된 클래스의 객체에 숨겨진 포인터 추가 (실제 호출되는 함수의 객체에 대한 포인터)
+실행시간 비용이 있음.
+Extra indirection (포인터 역참조) : 가상함수 호출시 마다 발생.
+inline 불가 : 작은">
 <meta property="og:type" content="article">
-<meta property="og:title" content="address of">
-<meta property="og:url" content="http://yoursite.com/2017/01/27/address-of/index.html">
+<meta property="og:title" content="Curiously Recurring Template Pattern">
+<meta property="og:url" content="http://yoursite.com/2017/05/16/Curiously-Recurring-Template-Pattern/index.html">
 <meta property="og:site_name" content="x:xs">
-<meta property="og:description" content="의도&amp;amp; 연산자를 오버로딩한 주소 찾기.
-동기논쟁이 될 소지가 있는게, 주소를 얻지 못하게 하려는 의도가 있을 수 도 있다.그럼에도 불구하고 언어에서는 가능하다.
-12345678910111213class nonaddressable &amp;#123;public:    typedef double useless_type;private:    useless_typ">
-<meta property="og:updated_time" content="2017-01-31T06:04:49.000Z">
+<meta property="og:description" content="가상함수를 통한 다형성
+dynamic polymorphism or runtime polymorphism
+일반적인 구현 방법 : 가상함수가 선언된 클래스의 객체에 숨겨진 포인터 추가 (실제 호출되는 함수의 객체에 대한 포인터)
+실행시간 비용이 있음.
+Extra indirection (포인터 역참조) : 가상함수 호출시 마다 발생.
+inline 불가 : 작은">
+<meta property="og:updated_time" content="2017-05-24T14:44:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="address of">
-<meta name="twitter:description" content="의도&amp;amp; 연산자를 오버로딩한 주소 찾기.
-동기논쟁이 될 소지가 있는게, 주소를 얻지 못하게 하려는 의도가 있을 수 도 있다.그럼에도 불구하고 언어에서는 가능하다.
-12345678910111213class nonaddressable &amp;#123;public:    typedef double useless_type;private:    useless_typ">
+<meta name="twitter:title" content="Curiously Recurring Template Pattern">
+<meta name="twitter:description" content="가상함수를 통한 다형성
+dynamic polymorphism or runtime polymorphism
+일반적인 구현 방법 : 가상함수가 선언된 클래스의 객체에 숨겨진 포인터 추가 (실제 호출되는 함수의 객체에 대한 포인터)
+실행시간 비용이 있음.
+Extra indirection (포인터 역참조) : 가상함수 호출시 마다 발생.
+inline 불가 : 작은">
     
 
     
@@ -133,14 +142,14 @@
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-address-of" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-Curiously-Recurring-Template-Pattern" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        address of
+        Curiously Recurring Template Pattern
         </h1>
     
 
@@ -148,8 +157,8 @@
         
         
             <div class="article-subtitle">
-                <a href="/2017/01/27/address-of/" class="article-date">
-    <time datetime="2017-01-27T12:56:31.000Z" itemprop="datePublished">2017-01-27</time>
+                <a href="/2017/05/16/Curiously-Recurring-Template-Pattern/" class="article-date">
+    <time datetime="2017-05-16T14:53:27.000Z" itemprop="datePublished">2017-05-16</time>
 </a>
                 
     <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/More-C-Idioms/">More C++ Idioms</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
@@ -158,22 +167,77 @@
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h3 id="의도"><a href="#의도" class="headerlink" title="의도"></a>의도</h3><p>&amp; 연산자를 오버로딩한 주소 찾기.</p>
-<h3 id="동기"><a href="#동기" class="headerlink" title="동기"></a>동기</h3><p>논쟁이 될 소지가 있는게, 주소를 얻지 못하게 하려는 의도가 있을 수 도 있다.<br>그럼에도 불구하고 언어에서는 가능하다.</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> nonaddressable </div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">typedef</span> <span class="keyword">double</span> useless_type;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">    useless_type <span class="keyword">operator</span>&amp;() <span class="keyword">const</span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">  nonaddressable na;</div><div class="line">  nonaddressable * naptr = &amp;na; <span class="comment">// Compiler error here.</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="방법"><a href="#방법" class="headerlink" title="방법"></a>방법</h3><ol>
-<li>const, volatile 한정자를 고려하여, 연산자를 오버로딩 할 수 없는 타입으로 변환 (reinterpret_cast)</li>
-<li>상수성 제거 (const_cast) </li>
-<li>다시 원래 타입으로 형 변환 (reinterpret_cast)</li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div><div class="line"><span class="function">T * <span class="title">addressof</span><span class="params">(T &amp; v)</span></span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">reinterpret_cast</span>&lt;T *&gt;(&amp; <span class="keyword">const_cast</span>&lt;<span class="keyword">char</span>&amp;&gt;</div><div class="line">    (<span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">const</span> <span class="keyword">volatile</span> <span class="keyword">char</span> &amp;&gt;(v)));</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">  nonaddressable na;</div><div class="line">  nonaddressable * naptr = addressof(na); <span class="comment">// No more compiler error.</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>c++ 11 에서는 <a href="http://en.cppreference.com/w/cpp/memory/addressof" target="_blank" rel="external">std::addressof</a> 가 있음.</li>
+            <ul>
+<li>가상함수를 통한 다형성<ul>
+<li>dynamic polymorphism or runtime polymorphism</li>
+<li>일반적인 구현 방법 : 가상함수가 선언된 클래스의 객체에 숨겨진 포인터 추가 (실제 호출되는 함수의 객체에 대한 포인터)</li>
+<li>실행시간 비용이 있음.<ul>
+<li>Extra indirection (포인터 역참조) : 가상함수 호출시 마다 발생.</li>
+<li>inline 불가 : 작은 함수일 경우 비용이 증가함.</li>
+<li>객체당 포인터 추가 : 64bit 를 주로 쓰는 요즘 8바이트 차지. 작은 객체의 경우 overhead 가 큼.</li>
 </ul>
-<h3 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h3><ul>
-<li>원문 : <a href="https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Address_Of" target="_blank" rel="external">Address Of</a></li>
-<li><a href="http://stackoverflow.com/questions/16195032/implementation-of-addressof" target="_blank" rel="external">Implementation of addressof</a></li>
-<li><a href="http://skyul.tistory.com/337" target="_blank" rel="external">C/C++ volatile 키워드</a></li>
+</li>
+</ul>
+</li>
+<li>성능이 중요한 경우 가상함수 사용을 지양함.</li>
+<li>대안은? 추가 비용 없이 template 으로 구현 가능. (There’s a catch, of course)<ul>
+<li>static polymorphism or simulated dynamic binding</li>
+<li>컴파일 타임에 호출 대상 객체가 결정됨.</li>
+</ul>
+</li>
+<li><p>이 방식의 핵심 -&gt; 파생 클래스의 타입이 기본 클래스의 타입 파라미터로 사용됨.</p>
+<ul>
+<li>이렇게 함으로써, 컴파일 타임에 파생 클래스의 타입을 기본 클래스에 inject 한다.</li>
+<li>컴파일 타임에 타입을 알 수 있기 때문에, static_cast 를 사용해서 this 를 파생 클래스 타입으로 변환 가능.<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">struct</span> TreeNode &#123;</div><div class="line">  <span class="keyword">enum</span> Kind &#123; RED, BLUE &#125;;</div><div class="line"></div><div class="line">  TreeNode(Kind kind_, TreeNode *left_ = <span class="literal">NULL</span>, TreeNode *right_ = <span class="literal">NULL</span>)</div><div class="line">      : kind(kind_), left(left_), right(right_) &#123;&#125;</div><div class="line"></div><div class="line">  Kind kind;</div><div class="line">  TreeNode *left, *right;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Derived&gt; <span class="keyword">class</span> GenericVisitor &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">visit_preorder</span><span class="params">(TreeNode *node)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (node) &#123;</div><div class="line">      dispatch_node(node);</div><div class="line">      visit_preorder(node-&gt;left);</div><div class="line">      visit_preorder(node-&gt;right);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">visit_inorder</span><span class="params">(TreeNode *node)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (node) &#123;</div><div class="line">      visit_inorder(node-&gt;left);</div><div class="line">      dispatch_node(node);</div><div class="line">      visit_inorder(node-&gt;right);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">visit_postorder</span><span class="params">(TreeNode *node)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (node) &#123;</div><div class="line">      visit_postorder(node-&gt;left);</div><div class="line">      visit_postorder(node-&gt;right);</div><div class="line">      dispatch_node(node);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">handle_RED</span><span class="params">(TreeNode *node)</span> </span>&#123; <span class="built_in">cerr</span> &lt;&lt; <span class="string">"Generic handle RED\n"</span>; &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">handle_BLUE</span><span class="params">(TreeNode *node)</span> </span>&#123; <span class="built_in">cerr</span> &lt;&lt; <span class="string">"Generic handle BLUE\n"</span>; &#125;</div><div class="line"></div><div class="line"><span class="keyword">private</span>:</div><div class="line">  <span class="comment">// Convenience method for CRTP</span></div><div class="line">  <span class="function">Derived &amp;<span class="title">derived</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> *<span class="keyword">static_cast</span>&lt;Derived *&gt;(<span class="keyword">this</span>); &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">dispatch_node</span><span class="params">(TreeNode *node)</span> </span>&#123;</div><div class="line">    <span class="keyword">switch</span> (node-&gt;kind) &#123;</div><div class="line">    <span class="keyword">case</span> TreeNode::RED:</div><div class="line">      derived().handle_RED(node);</div><div class="line">      <span class="keyword">break</span>;</div><div class="line">    <span class="keyword">case</span> TreeNode::BLUE:</div><div class="line">      derived().handle_BLUE(node);</div><div class="line">      <span class="keyword">break</span>;</div><div class="line">    <span class="keyword">default</span>:</div><div class="line">      assert(<span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// 간단한 파생 클래스.</span></div><div class="line"><span class="keyword">class</span> SpecialVisitor : <span class="keyword">public</span> GenericVisitor&lt;SpecialVisitor&gt; &#123;</div><div class="line"> <span class="keyword">public</span>:</div><div class="line">  <span class="function"><span class="keyword">void</span> <span class="title">handle_RED</span><span class="params">(TreeNode* node)</span> </span>&#123; <span class="built_in">cerr</span> &lt;&lt; <span class="string">"RED is special\n"</span>; &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>설명</p>
+<ul>
+<li>여러 방식의 방문 로직은 기본 클래스에서 제공하고, 특정 노드에 대한 처리는 파생 클래스에서 처리.</li>
+<li>소스 코드가 다른 종류의 노드를 갖는 트리로 생성되는, 컴파일러와 같은 코드에서 유용함.</li>
+<li>컴파일러의 각 단계에서 필요한 visitor 를 구현해서 사용.<ul>
+<li>Clang compiler frontend - RecursiveASTVisitor</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>다른 예제:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Derived&gt;</div><div class="line"><span class="keyword">struct</span> Comparisons &#123;&#125;;</div><div class="line"></div><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Derived&gt;</div><div class="line"><span class="keyword">bool</span> <span class="keyword">operator</span>==(<span class="keyword">const</span> Comparisons&lt;Derived&gt;&amp; o1,</div><div class="line">                <span class="keyword">const</span> Comparisons&lt;Derived&gt;&amp; o2) &#123;</div><div class="line">  <span class="keyword">const</span> Derived&amp; d1 = <span class="keyword">static_cast</span>&lt;<span class="keyword">const</span> Derived&amp;&gt;(o1);</div><div class="line">  <span class="keyword">const</span> Derived&amp; d2 = <span class="keyword">static_cast</span>&lt;<span class="keyword">const</span> Derived&amp;&gt;(o2);</div><div class="line"></div><div class="line">  <span class="keyword">return</span> !(d1 &lt; d2) &amp;&amp; !(d2 &lt; d1);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Derived&gt;</div><div class="line"><span class="keyword">bool</span> <span class="keyword">operator</span>!=(<span class="keyword">const</span> Comparisons&lt;Derived&gt;&amp; o1,</div><div class="line">                <span class="keyword">const</span> Comparisons&lt;Derived&gt;&amp; o2) &#123;</div><div class="line">  <span class="keyword">return</span> !(o1 == o2);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 파생 클래스, '&lt;' 연산자만 구현.</span></div><div class="line"><span class="keyword">class</span> Person : <span class="keyword">public</span> Comparisons&lt;Person&gt; &#123;</div><div class="line"> <span class="keyword">public</span>:</div><div class="line">  Person(<span class="built_in">string</span> name_, <span class="keyword">unsigned</span> age_) : name(name_), age(age_) &#123;&#125;</div><div class="line"></div><div class="line">  <span class="keyword">friend</span> <span class="keyword">bool</span> <span class="keyword">operator</span>&lt;(<span class="keyword">const</span> Person&amp; p1, <span class="keyword">const</span> Person&amp; p2);</div><div class="line"></div><div class="line"> <span class="keyword">private</span>:</div><div class="line">  <span class="built_in">string</span> name;</div><div class="line">  <span class="keyword">unsigned</span> age;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">bool</span> <span class="keyword">operator</span>&lt;(<span class="keyword">const</span> Person&amp; p1, <span class="keyword">const</span> Person&amp; p2) &#123;</div><div class="line">  <span class="keyword">return</span> p1.age &lt; p2.age;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>설명<ul>
+<li>‘&lt;’ 연산자만 정의한 파생 클래스에서, ==, != 연산자를 사용할 수 있게 됨.</li>
+<li>Comparisons 과 같은 클래스를 <code>mixin class</code> 라고도 함.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>In object-oriented programming languages, a mixin is a class that provides a certain functionality to be inherited or just reused by a subclass, while not meant for instantiation (the generation of objects of that class). Inheriting from a mixin is not a form of specialization but is rather a means of collecting functionality. A class may inherit most or all of its functionality from one or more mixins through multiple inheritance. - <a href="http://en.wikipedia.org/wiki/Mixin" target="_blank" rel="external">Wikipedia quote</a></p>
+</blockquote>
+<ul>
+<li><p>mixin</p>
+<ul>
+<li>특정 기능을 제공하는 클래스.</li>
+<li>상속 받거나 단순하게 재사용함. (mixin 클래스의 객체 생성을 의미하지 않음)</li>
+<li>mixin 클래스 상속은 기능을 포함하는 방법이지, 구체화를 위한 것이 아니다.</li>
+<li>다중 상속을 통해, 여러 mixin 클래스를 상속할 수 도 있다.</li>
+</ul>
+</li>
+<li><p>CRTP 는 얼마나 쓸까?</p>
+<ul>
+<li>RecursiveASTVisitor in clang</li>
+<li><a href="http://www.boost.org/doc/libs/1_46_0/libs/iterator/doc/iterator_facade.html" target="_blank" rel="external">Iterator Facade</a> in Boost<blockquote>
+<p><code>iterator_facade</code> is a base class template that implements the interface of standard iterators in terms of a few core functions and associated types, to be supplied by a derived iterator class.</p>
+</blockquote>
+</li>
+<li><a href="http://msdn.microsoft.com/en-us/library/h4616bh2%28v=vs.80%29.aspx" target="_blank" rel="external">CWindowImpl template</a> in Microsoft’s Active Template Library (ATL)</li>
+<li>enable_shared_from_this</li>
+</ul>
+</li>
+</ul>
+<h4 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h4><ul>
+<li><a href="http://eli.thegreenplace.net/2011/05/17/the-curiously-recurring-template-pattern-in-c" target="_blank" rel="external">The Curiously Recurring Template Pattern in C++</a> by Eli Bendersky.</li>
+<li><a href="https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Curiously_Recurring_Template_Pattern" target="_blank" rel="external">More C++ Idioms</a></li>
 </ul>
 
         </div>
@@ -182,7 +246,7 @@
 
 
 
-    <a data-url="http://yoursite.com/2017/01/27/address-of/" data-id="cj2u5l9mc0000xwfsxbemdki0" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://yoursite.com/2017/05/16/Curiously-Recurring-Template-Pattern/" data-id="cj2u5l9my0003xwfs31tey9sn" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -319,20 +383,20 @@
         
 <nav id="article-nav">
     
-        <a href="/2017/01/31/algebraic-hierarchy/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2017/05/18/googletest/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">newer</strong>
         <p class="article-nav-title">
         
-            algebraic hierarchy
+            googletest
         
         </p>
         <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
     </a>
     
     
-        <a href="/2017/01/24/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2017/05/16/constexpr/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">Hello World</p>
+        <p class="article-nav-title">constexpr</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -529,7 +593,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'http://yoursite.com/2017/01/27/address-of/';
+    var disqus_url = 'http://yoursite.com/2017/05/16/Curiously-Recurring-Template-Pattern/';
     
     (function() {
     var dsq = document.createElement('script');

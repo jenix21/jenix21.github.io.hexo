@@ -3,15 +3,51 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Archive: 2017/1 | x:xs</title>
+    <title>constexpr | x:xs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta property="og:type" content="website">
-<meta property="og:title" content="x:xs">
-<meta property="og:url" content="http://yoursite.com/archives/2017/01/index.html">
+        <meta name="keywords" content="c++,EMC++" />
+    
+    <meta name="description" content="향목 15: 가능하면 항상 constexpr을 사용하라
+효과 
+
+컴파일 시점에 상수를 요구하는 문맥(정수 상수 표현식 integral constant expression)에 사용할 수 있다.
+배열의 크기, 정수 템플릿 인수(std::array 의 길이), 열거자 값
+
+
+그렇지 않은 경우도 사용 가능하다.. 는 것이 장점!
+
+
+const 객체는 반드시 컴파일">
+<meta property="og:type" content="article">
+<meta property="og:title" content="constexpr">
+<meta property="og:url" content="http://yoursite.com/2017/05/16/constexpr/index.html">
 <meta property="og:site_name" content="x:xs">
+<meta property="og:description" content="향목 15: 가능하면 항상 constexpr을 사용하라
+효과 
+
+컴파일 시점에 상수를 요구하는 문맥(정수 상수 표현식 integral constant expression)에 사용할 수 있다.
+배열의 크기, 정수 템플릿 인수(std::array 의 길이), 열거자 값
+
+
+그렇지 않은 경우도 사용 가능하다.. 는 것이 장점!
+
+
+const 객체는 반드시 컴파일">
+<meta property="og:updated_time" content="2017-05-16T15:54:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="x:xs">
+<meta name="twitter:title" content="constexpr">
+<meta name="twitter:description" content="향목 15: 가능하면 항상 constexpr을 사용하라
+효과 
+
+컴파일 시점에 상수를 요구하는 문맥(정수 상수 표현식 integral constant expression)에 사용할 수 있다.
+배열의 크기, 정수 템플릿 인수(std::array 의 길이), 열거자 값
+
+
+그렇지 않은 경우도 사용 가능하다.. 는 것이 장점!
+
+
+const 객체는 반드시 컴파일">
     
 
     
@@ -117,170 +153,135 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <i class="icon fa fa-archive"></i>Archive: 2017/1
+    uncategorized
     </h1>
 </div>
                         <div class="main-body-content">
-                            
+                            <article id="post-constexpr" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        constexpr
+        </h1>
+    
 
-    
-    
+            </header>
         
         
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2017" class="archive-year"><i class="icon fa fa-calendar-o"></i>2017</a>
+            <div class="article-subtitle">
+                <a href="/2017/05/16/constexpr/" class="article-date">
+    <time datetime="2017-05-16T14:33:24.000Z" itemprop="datePublished">2017-05-16</time>
+</a>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/EMC/">EMC++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
+
             </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
         
-        <a href="/2017/01/31/algebraic-hierarchy/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
         
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2017/01/31/algebraic-hierarchy/">0</span>
-    
-</span>
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="향목-15-가능하면-항상-constexpr을-사용하라"><a href="#향목-15-가능하면-항상-constexpr을-사용하라" class="headerlink" title="향목 15: 가능하면 항상 constexpr을 사용하라"></a>향목 15: 가능하면 항상 constexpr을 사용하라</h2><ul>
+<li><p>효과 </p>
+<ul>
+<li>컴파일 시점에 상수를 요구하는 문맥(정수 상수 표현식 integral constant expression)에 사용할 수 있다.<ul>
+<li>배열의 크기, 정수 템플릿 인수(std::array 의 길이), 열거자 값</li>
+</ul>
+</li>
+<li>그렇지 않은 경우도 사용 가능하다.. 는 것이 장점!</li>
+</ul>
+</li>
+<li><p>const 객체는 반드시 컴파일 시점에 알려지는 값으로 초기화 되지 않음.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> sz;</div><div class="line"><span class="keyword">const</span> <span class="keyword">auto</span> arraySize = sz;        <span class="comment">// ok</span></div><div class="line"><span class="built_in">std</span>::<span class="built_in">array</span>&lt;<span class="keyword">int</span>, arraySize&gt; data;  <span class="comment">// error</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>constexpr 함수의 경우, 컴파일 시점 상수를 인수로 호출될 경우만 상수가 된다.</p>
+<ul>
+<li>이 경우, 컴파일 시점 상수를 요구하는 문맥에 쓸 수 있다.</li>
+<li>상수가 아닌 경우도 쓸 수 있어서, 두 가지 버전을 따로 구현할 필요가 없어진다.</li>
+</ul>
+</li>
+</ul>
 
-    
-</a>
-
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2017-01-31T01:42:01.000Z" itemprop="datePublished">2017-01-31</time></p>
         </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/01/31/algebraic-hierarchy/">algebraic hierarchy</a>
-        </h1>
-    
+        <footer class="article-footer">
+            
 
-        <p class="article-excerpt">
-            의도밀접하게 관련 있는 여러 개의 대수적 추상들(abstractions, 예. numbers)을 하나의 포괄적인(generic) 추상 뒤로 숨기고, 그것에 대한 포괄적인 인터페이스를 제공 한다.
-동기방법참고
-        </p>
+
+
+    <a data-url="http://yoursite.com/2017/05/16/constexpr/" data-id="cj2u5l9n30004xwfsefn0pl5s" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
     </div>
 </article>
-    
 
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/01/27/address-of/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
+    <section id="comments">
     
         
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2017/01/27/address-of/">0</span>
-    
-</span>
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2017-01-27T12:56:31.000Z" itemprop="datePublished">2017-01-27</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/01/27/address-of/">address of</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            의도&amp; 연산자를 오버로딩한 주소 찾기.
-동기논쟁이 될 소지가 있는게, 주소를 얻지 못하게 하려는 의도가 있을 수 도 있다.그럼에도 불구하고 언어에서는 가능하다.
-12345678910111213class nonaddressable &#123;public:    typedef double useless_type;private:    useless_typ
-        </p>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
-</article>
-    
-        </div>
-    
 
     
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2017/01/24/hello-world/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2017/01/24/hello-world/">0</span>
-    
-</span>
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <p class="category">
-            
-            </p>
-            <p class="date"><time datetime="2017-01-23T16:11:46.000Z" itemprop="datePublished">2017-01-24</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2017/01/24/hello-world/">Hello World</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-
-    </div></section>
-
+    </section>
 
 
                         </div>
@@ -341,6 +342,29 @@ Quick
             
         </ul>
     </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/05/16/Curiously-Recurring-Template-Pattern/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            Curiously Recurring Template Pattern
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2017/01/31/algebraic-hierarchy/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">algebraic hierarchy</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
     
     <div class="widgets-container">
         
@@ -532,11 +556,13 @@ Quick
     var disqus_shortname = 'hexo-theme-hueman';
     
     
+    var disqus_url = 'http://yoursite.com/2017/05/16/constexpr/';
+    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>

@@ -3,27 +3,33 @@
 <head>
     <meta charset="utf-8">
     
-    <title>address of | x:xs</title>
+    <title>googletest | x:xs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="c++,More C++ Idioms" />
+        <meta name="keywords" content="" />
     
-    <meta name="description" content="의도&amp;amp; 연산자를 오버로딩한 주소 찾기.
-동기논쟁이 될 소지가 있는게, 주소를 얻지 못하게 하려는 의도가 있을 수 도 있다.그럼에도 불구하고 언어에서는 가능하다.
-12345678910111213class nonaddressable &amp;#123;public:    typedef double useless_type;private:    useless_typ">
+    <meta name="description" content="https://github.com/google/googletest/blob/master/googletest/docs/V1_7_Primer.md
+Introduction: Why Google C++ Testing Framework?
+좋은 테스트란?
+독립적, 반복적 - 다른 테스트의 결과에 따라 결과가 바뀌면 디버깅 하기 어렵다.
+gtest 는, 각 테스트를 다">
 <meta property="og:type" content="article">
-<meta property="og:title" content="address of">
-<meta property="og:url" content="http://yoursite.com/2017/01/27/address-of/index.html">
+<meta property="og:title" content="googletest">
+<meta property="og:url" content="http://yoursite.com/2017/05/18/googletest/index.html">
 <meta property="og:site_name" content="x:xs">
-<meta property="og:description" content="의도&amp;amp; 연산자를 오버로딩한 주소 찾기.
-동기논쟁이 될 소지가 있는게, 주소를 얻지 못하게 하려는 의도가 있을 수 도 있다.그럼에도 불구하고 언어에서는 가능하다.
-12345678910111213class nonaddressable &amp;#123;public:    typedef double useless_type;private:    useless_typ">
-<meta property="og:updated_time" content="2017-01-31T06:04:49.000Z">
+<meta property="og:description" content="https://github.com/google/googletest/blob/master/googletest/docs/V1_7_Primer.md
+Introduction: Why Google C++ Testing Framework?
+좋은 테스트란?
+독립적, 반복적 - 다른 테스트의 결과에 따라 결과가 바뀌면 디버깅 하기 어렵다.
+gtest 는, 각 테스트를 다">
+<meta property="og:updated_time" content="2017-05-18T09:30:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="address of">
-<meta name="twitter:description" content="의도&amp;amp; 연산자를 오버로딩한 주소 찾기.
-동기논쟁이 될 소지가 있는게, 주소를 얻지 못하게 하려는 의도가 있을 수 도 있다.그럼에도 불구하고 언어에서는 가능하다.
-12345678910111213class nonaddressable &amp;#123;public:    typedef double useless_type;private:    useless_typ">
+<meta name="twitter:title" content="googletest">
+<meta name="twitter:description" content="https://github.com/google/googletest/blob/master/googletest/docs/V1_7_Primer.md
+Introduction: Why Google C++ Testing Framework?
+좋은 테스트란?
+독립적, 반복적 - 다른 테스트의 결과에 따라 결과가 바뀌면 디버깅 하기 어렵다.
+gtest 는, 각 테스트를 다">
     
 
     
@@ -133,14 +139,14 @@
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-address-of" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-googletest" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        address of
+        googletest
         </h1>
     
 
@@ -148,33 +154,128 @@
         
         
             <div class="article-subtitle">
-                <a href="/2017/01/27/address-of/" class="article-date">
-    <time datetime="2017-01-27T12:56:31.000Z" itemprop="datePublished">2017-01-27</time>
+                <a href="/2017/05/18/googletest/" class="article-date">
+    <time datetime="2017-05-18T06:19:48.000Z" itemprop="datePublished">2017-05-18</time>
 </a>
                 
-    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/More-C-Idioms/">More C++ Idioms</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li></ul>
-
             </div>
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h3 id="의도"><a href="#의도" class="headerlink" title="의도"></a>의도</h3><p>&amp; 연산자를 오버로딩한 주소 찾기.</p>
-<h3 id="동기"><a href="#동기" class="headerlink" title="동기"></a>동기</h3><p>논쟁이 될 소지가 있는게, 주소를 얻지 못하게 하려는 의도가 있을 수 도 있다.<br>그럼에도 불구하고 언어에서는 가능하다.</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> nonaddressable </div><div class="line">&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">typedef</span> <span class="keyword">double</span> useless_type;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">    useless_type <span class="keyword">operator</span>&amp;() <span class="keyword">const</span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">  nonaddressable na;</div><div class="line">  nonaddressable * naptr = &amp;na; <span class="comment">// Compiler error here.</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="방법"><a href="#방법" class="headerlink" title="방법"></a>방법</h3><ol>
-<li>const, volatile 한정자를 고려하여, 연산자를 오버로딩 할 수 없는 타입으로 변환 (reinterpret_cast)</li>
-<li>상수성 제거 (const_cast) </li>
-<li>다시 원래 타입으로 형 변환 (reinterpret_cast)</li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div><div class="line"><span class="function">T * <span class="title">addressof</span><span class="params">(T &amp; v)</span></span></div><div class="line">&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">reinterpret_cast</span>&lt;T *&gt;(&amp; <span class="keyword">const_cast</span>&lt;<span class="keyword">char</span>&amp;&gt;</div><div class="line">    (<span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">const</span> <span class="keyword">volatile</span> <span class="keyword">char</span> &amp;&gt;(v)));</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">  nonaddressable na;</div><div class="line">  nonaddressable * naptr = addressof(na); <span class="comment">// No more compiler error.</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+            <p><a href="https://github.com/google/googletest/blob/master/googletest/docs/V1_7_Primer.md" target="_blank" rel="external">https://github.com/google/googletest/blob/master/googletest/docs/V1_7_Primer.md</a></p>
+<h3 id="Introduction-Why-Google-C-Testing-Framework"><a href="#Introduction-Why-Google-C-Testing-Framework" class="headerlink" title="Introduction: Why Google C++ Testing Framework?"></a>Introduction: Why Google C++ Testing Framework?</h3><ul>
+<li>좋은 테스트란?<ul>
+<li>독립적, 반복적 - 다른 테스트의 결과에 따라 결과가 바뀌면 디버깅 하기 어렵다.<ul>
+<li>gtest 는, 각 테스트를 다른 객체를 통해 수행하는 방법으로 고립 시킨다.</li>
+<li>빠른 디버깅을 위해 실패한 테스트만 고립시켜서 실행 할 수 있다.</li>
+</ul>
+</li>
+<li>테스트들은 잘 조직화 되고, 테스트 대상이 되는 코드의 구조를 반영하는 것이 좋다.<ul>
+<li>gtest 는, 관련된 테스트들을 테스트 케이스로 묶고, 데이터와 서브 루틴을 공유할 수 있다.</li>
+</ul>
+</li>
+<li>테스트의 이식성과 재사용성 - 오픈 소스 커뮤니티는 플랫폼 중립적인 코드가 많고, 테스트 역시 플랫폼 중립적인 것이 좋다.<ul>
+<li>gtest 는, 다른 os, 컴파일러로 쉽게 동작 할 수 있다.</li>
+</ul>
+</li>
+<li>테스트가 실패하면, 가능한한 문제에 대한 많은 정보를 제공하는 것이 좋다.<ul>
+<li>gtest 는, 테스트 실패시 현재 테스트만 중단하고, 다음 테스트는 계속 수행 한다.</li>
+<li>설정을 통해 실패시 치명적인 오류가 아닌 경우 리포트하고 계속 수행하도록 할 수 있다.</li>
+<li>한번의 실행-편집-컴파일 주기를 통해 많은 결함을 찾아 수정할 수 있다.</li>
+</ul>
+</li>
+<li>테스트 작성자가 테스트 자체에 대해서만 집중할 수 있도록 하는 것이 좋다.<ul>
+<li>gtest 는, 정의된 테스트들을 모두 알고 있고, 실행을 위해서 모두 나열하지 않아도 된다.</li>
+</ul>
+</li>
+<li>테스트 실행이 빨라야 한다.<ul>
+<li>gtest 는, set-up/tear-down 을 한번만 수행하고, 리소스를 테스트들 간에 공유할 수 있어 다른 테스트를 기다릴 필요가 없다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Setting-up-a-New-Test-Project"><a href="#Setting-up-a-New-Test-Project" class="headerlink" title="Setting up a New Test Project"></a>Setting up a New Test Project</h3><p>테스트 프로그램 작성을 위해서는, gtest 를 라이브러리로 컴파일 하고, 테스트와 링크 해야 한다.<br>gtest 루트 디렉토리 아래 인기있는 빌드 시스템 위한 빌드 파일들을 제공한다. (msvc, xcode, make, codegear, CMakeLists.txt)<br>해당되는 빌드 시스템이 없다면, make/Makefile 에서 컴파일 하는 방법을 찾을 수 있다. (기본적으로 src/gtest-all.cc 를 컴파일 하며, 헤더 검색 결로에 GTEST_ROOT, GTEST_ROOT/include 를 포함시킨다.)<br>테스트를 위한 빌드 타겟을 만들고, GTEST_ROOT/include 를 헤더 검색 경로에 포함하고 gtest 라이브러리르 링크 하도록 설정한다.</p>
+<h3 id="Basic-Concepts"><a href="#Basic-Concepts" class="headerlink" title="Basic Concepts"></a>Basic Concepts</h3><p>보통은 assertion 문을 사용해서 조건이 참인자 체크 한다.<br>assertion 의 결과는 success, nonfatal failure, fatal failure 가 될 수 있다.<br>fatal failure 면 현재 함수를 종료하고, 그렇지 않으면 계속 수행한다.</p>
+<p>‘테스트’ 는 테스트 대상 코드의 행위를 검중하기 위해 assertion 을 사용하며, 테스트가 죽거나 assertion 이 실패하면, 실패이고 그렇지 않으면 성공 이다.</p>
+<p>‘테스트 케이스’ 는 하나 혹은 여러 개으 테스트를 포함한다. 테스트 대상 코드의 구조를 반영 하도록 테스트들을 테스트 케이스로 묶는 것이 좋다.<br>테스트 케이스에 있는 테스트들 간에 공유하는 공통 객체나 서브 루틴은 test fixture 클래스에 넣을 수 있다.</p>
+<p>‘테스트 프로그램’ 은 여러 개의 테스트 케이스들을 포함 할 수 있다.</p>
+<h3 id="Assertions"><a href="#Assertions" class="headerlink" title="Assertions"></a>Assertions</h3><p>gtest 의 assertion 은 함수 호출 형태의 매크로들 이다.<br>클래스나 함수에 대해 assertion 을 만들어서 테스트 할 수 있다. 실패 하면, 소스 파일명과 줄 수, 실패 메세지를 출력 해준다.<br>gtest 메세지에 추가되는 커스텀 실패 메세지도 넣을 수 있다.</p>
+<p>assertion 종류에 따라 현재 함수에 다른 영향을 줄 수 있다.</p>
 <ul>
-<li>c++ 11 에서는 <a href="http://en.cppreference.com/w/cpp/memory/addressof" target="_blank" rel="external">std::addressof</a> 가 있음.</li>
+<li>ASSERT_* - 실패하면 fatal failures 를 생성하고, 현재 함수를 종료 한다.</li>
+<li>EXPECT_* - nonfatal failures 를 생성하고, 종료하진 않는다.</li>
 </ul>
-<h3 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h3><ul>
-<li>원문 : <a href="https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Address_Of" target="_blank" rel="external">Address Of</a></li>
-<li><a href="http://stackoverflow.com/questions/16195032/implementation-of-addressof" target="_blank" rel="external">Implementation of addressof</a></li>
-<li><a href="http://skyul.tistory.com/337" target="_blank" rel="external">C/C++ volatile 키워드</a></li>
-</ul>
+<p>테스트에서 여러개의 실패가 발생할 수 있으면, EXPECT_* 를 선호한다.</p>
+<p>실패 했을 때, 더 이상 테스트를 진행하는 것이 의미가 없다면, ASSERT_* 을 사용한다.</p>
+<p>ASSERT_* 실패시, 바로 현재 함수를 종료하기 때문에, 이후에 있을 만한 clean-up 코드는 실행되지 않을 수 있으며,<br>space leak 을 유발할 수 도 있다. leak 의 특성에 따라 수정할 필요가 있거나 없을 수도 있다.<br>assertion 에러 이외에 heak checker 에러가 발생하면, 이 부분을 고려하는 것이 좋다.</p>
+<p>커스텀 실패 메세지를 추가 하려면, 매크로에 <code>&lt;&lt;</code> 연산자를 사용하면 된다. 연속해서 사용해도 된다.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ASSERT_EQ(x.size(), y.size()) &lt;&lt; <span class="string">"Vectors x and y are of unequal length"</span>;</div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; x.size(); ++i) &#123;</div><div class="line">  EXPECT_EQ(x[i], y[i]) &lt;&lt; <span class="string">"Vectors x and y differ at index "</span> &lt;&lt; i;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>ostream</code> 으로 보낼 수 있으면, 매크로로 보낼 수 있다. (c 문자열이나 <code>string</code> 객체)<br>wide string (wchar_t<em>, TCHAR</em> in UNICODE mode on Windows, std::wstring)을 매크로로 보내면, UTF-8 로 변환되서 출력 된다.</p>
+<h4 id="Basic-Assertions"><a href="#Basic-Assertions" class="headerlink" title="Basic Assertions"></a>Basic Assertions</h4><p>이 assertion 들은 기본적인 true/false 조건 테스트를 할 수 있다.<br>기억할 것은 ASSERT<em>* 은 fatal failure 를 생성하고 현재 함수를 빠져 나가며, EXPECT</em>* 는 nonfatal failure 를 생성하고 계속 진행한다는 것이다.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>Fatal assertion</strong></th>
+<th style="text-align:left"><strong>Nonfatal assertion</strong></th>
+<th style="text-align:left"><strong>Verifies</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>ASSERT_TRUE(</code><em>condition</em><code>)</code>;</td>
+<td style="text-align:left"><code>EXPECT_TRUE(</code><em>condition</em><code>)</code>;</td>
+<td style="text-align:left"><em>condition</em> is true</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>ASSERT_FALSE(</code><em>condition</em><code>)</code>;</td>
+<td style="text-align:left"><code>EXPECT_FALSE(</code><em>condition</em><code>)</code>;</td>
+<td style="text-align:left"><em>condition</em> is false</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Binary-Comparison"><a href="#Binary-Comparison" class="headerlink" title="Binary Comparison"></a>Binary Comparison</h4><p>두 값을 비교하는 assertion 을 설명한다.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>Fatal assertion</strong></th>
+<th style="text-align:left"><strong>Nonfatal assertion</strong></th>
+<th style="text-align:left"><strong>Verifies</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>ASSERT_EQ(</code><em>expected</em><code>,</code><em>actual</em><code>);</code></td>
+<td style="text-align:left"><code>EXPECT_EQ(</code><em>expected</em><code>,</code><em>actual</em><code>);</code></td>
+<td style="text-align:left"><em>expected</em> <code>==</code> <em>actual</em></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>ASSERT_NE(</code><em>val1</em><code>,</code><em>val2</em><code>);</code></td>
+<td style="text-align:left"><code>EXPECT_NE(</code><em>val1</em><code>,</code><em>val2</em><code>);</code></td>
+<td style="text-align:left"><em>val1</em> <code>!=</code> <em>val2</em></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>ASSERT_LT(</code><em>val1</em><code>,</code><em>val2</em><code>);</code></td>
+<td style="text-align:left"><code>EXPECT_LT(</code><em>val1</em><code>,</code><em>val2</em><code>);</code></td>
+<td style="text-align:left"><em>val1</em> <code>&lt;</code> <em>val2</em></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>ASSERT_LE(</code><em>val1</em><code>,</code><em>val2</em><code>);</code></td>
+<td style="text-align:left"><code>EXPECT_LE(</code><em>val1</em><code>,</code><em>val2</em><code>);</code></td>
+<td style="text-align:left"><em>val1</em> <code>&lt;=</code> <em>val2</em></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>ASSERT_GT(</code><em>val1</em><code>,</code><em>val2</em><code>);</code></td>
+<td style="text-align:left"><code>EXPECT_GT(</code><em>val1</em><code>,</code><em>val2</em><code>);</code></td>
+<td style="text-align:left"><em>val1</em> <code>&gt;</code> <em>val2</em></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>ASSERT_GE(</code><em>val1</em><code>,</code><em>val2</em><code>);</code></td>
+<td style="text-align:left"><code>EXPECT_GE(</code><em>val1</em><code>,</code><em>val2</em><code>);</code></td>
+<td style="text-align:left"><em>val1</em> <code>&gt;=</code> <em>val2</em></td>
+</tr>
+</tbody>
+</table>
 
         </div>
         <footer class="article-footer">
@@ -182,7 +283,7 @@
 
 
 
-    <a data-url="http://yoursite.com/2017/01/27/address-of/" data-id="cj2u5l9mc0000xwfsxbemdki0" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://yoursite.com/2017/05/18/googletest/" data-id="cj2u5l9n80005xwfs6fe6yiba" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -319,20 +420,10 @@
         
 <nav id="article-nav">
     
-        <a href="/2017/01/31/algebraic-hierarchy/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
-        <p class="article-nav-title">
-        
-            algebraic hierarchy
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2017/01/24/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2017/05/16/Curiously-Recurring-Template-Pattern/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">Hello World</p>
+        <p class="article-nav-title">Curiously Recurring Template Pattern</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -529,7 +620,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'http://yoursite.com/2017/01/27/address-of/';
+    var disqus_url = 'http://yoursite.com/2017/05/18/googletest/';
     
     (function() {
     var dsq = document.createElement('script');
